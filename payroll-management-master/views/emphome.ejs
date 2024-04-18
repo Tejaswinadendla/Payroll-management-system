@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Payroll System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<style>
+  .formbold-mb-3 {
+    margin-bottom: 15px;
+  }
+
+
+  .formbold-main-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    width: 44%;
+    margin: auto;
+  }
+
+  .formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: white;
+    padding: 40px;
+  }
+
+  .formbold-img {
+    margin-bottom: 45px;
+  }
+
+  .formbold-form-title {
+    margin-bottom: 30px;
+  }
+
+  .formbold-form-title h2 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #07074d;
+  }
+
+  .formbold-form-title p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #536387;
+    margin-top: 12px;
+  }
+
+  .formbold-input-flex {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+
+  .formbold-input-flex>div {
+    width: 50%;
+  }
+
+  .formbold-form-input {
+    text-align: center;
+    width: 100%;
+    padding: 13px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
+
+  .formbold-form-input:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .formbold-form-label {
+    color: #536387;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .formbold-checkbox-label {
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #536387;
+  }
+
+  .formbold-checkbox-label a {
+    margin-left: 5px;
+    color: #6a64f1;
+  }
+
+  .formbold-input-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .formbold-checkbox-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    margin-top: 2px;
+    border: 0.7px solid #dde3ec;
+    border-radius: 3px;
+  }
+
+  .formbold-btn {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 14px 25px;
+    border: none;
+    font-weight: 500;
+    background-color: #6a64f1;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+
+  .formbold-btn:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .cls {
+    display: inline-flex;
+  }
+
+  .cut {
+    position: absolute;
+    top: 65px;
+    right: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<body style="font-family: Montserrat, sans-serif;">
+  <nav class="navbar d-print-block navbar-dark navbar-expand-md sticky-top text-center navy"
+    style="background-color: black;">
+    <div class="container-fluid"><a class="navbar-brand text-light" href="#"><strong>PAYROLL SYSTEM</strong></a><button
+        data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle
+          navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav text-left ml-auto">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" href="#">Welcome <%= user.fullname %></a>
+          </li>
+          <li class="nav-item" role="presentation"><a class="nav-link" href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container emp-profile" style="margin-top: 10px;">
+    <form method="post">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcDDG7PyLbajFLBkHtGXlaGR0InemT4puRas3Fub4&s"
+              alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>
+              <%=user.fullname %>
+            </h5>
+            <h6>
+              <%= user.bio %>
+            </h6>
+            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                  aria-selected="true">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                  aria-controls="profile" aria-selected="false">Works</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
+          <a href="#" class="editbtn">Edit Profile</a>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.fullname %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user._id %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Address:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.address %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Salry/D:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.salaryperday %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Gender:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.gender %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Phone:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.phone %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>JopTitle:</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.jopTitle %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Experience :</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.experience %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Total Projects :</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <%= user.totalProject %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- edit profile -->
+  <div class="formbold-main-wrapper" style="display: none;">
+    <div class="formbold-form-wrapper">
+      <form method="post" action="/editProfile/<%= user._id %>">
+        <div class="formbold-input-flex">
+          <div>
+            <label for="firstname" class="formbold-form-label">
+              FullName
+            </label>
+            <input type="text" name="fullname" id="fullname" value="<%= user.fullname %>" class="formbold-form-input" />
+          </div>
+          <div>
+            <label for="lastname" class="formbold-form-label"> D.O.B</label>
+            <input type="date" name="dob" id="dob" value="<%= user.dob %>" class="formbold-form-input" />
+          </div>
+        </div>
+        <div class="formbold-mb-3">
+          <label for="bio" class="formbold-form-label">
+            Bio
+          </label>
+          <input type="text" name="bio" id="bio" value="<%= user.bio %>" class="formbold-form-input" />
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="address" class="formbold-form-label">Address</label>
+            <input type="text" name="address" id="address" value="<%= user.address %>" class="formbold-form-input" />
+          </div>
+          <div>
+            <label for="jopTitle" class="formbold-form-label">JopTitle</label>
+            <input type="text" name="jopTitle" id="jopTitle" value="<%= user.jopTitle %>" class="formbold-form-input" />
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="experience" class="formbold-form-label">Experience</label>
+            <input type="text" name="experience" id="experience" value="<%= user.experience %>" class="formbold-form-input" />
+          </div>
+          <div>
+            <label for="totalProject" class="formbold-form-label">TotalProject</label>
+            <input type="number" name="totalProject" id="totalProject" value="<%= user.totalProject %>" class="formbold-form-input" />
+          </div>
+        </div>
+    </div>
+    <button class="formbold-btn">Submit</button>
+    </form>
+  </div>
+  
+
+  <div class="salary" style="display: block;">
+    <h1 style="background:aliceblue;margin-bottom:0px"> Generate Salary Report </h1>
+    <div class="row register-form" style="background:aliceblue">
+      <div class="col-md-8 offset-md-2">
+        <form method="post" class="custom-form" action="/report">
+          <h3 class="text-center">To get this month salary report please input Attendance</h3>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">No of Days
+                Worked</label></div>
+            <div class="col-sm-6 input-column"><input name="Work" type="Number" class="form-control" min="0" max="31"
+                required /></div>
+          </div>
+          <input type="hidden" name="id" value=<%=user._id %> />
+          <input class="btn btn-light submit-button" type="submit" value="Get Report" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footerpad">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-8 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                    class="fa fa-circle fa-stack-2x"></i><i
+                    class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                    class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a>
+            </li>
+            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                    class="fa fa-circle fa-stack-2x"></i><i
+                    class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></a></li>
+            <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i
+                    class="fa fa-circle fa-stack-2x"></i><i
+                    class="fa fa-pinterest fa-stack-1x fa-inverse"></i></span></a></li>
+          </ul>
+          <p class="copyright text-muted text-center">Copyright &copy; Payroll System 2023 |IIITA </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    let editbtn = document.getElementsByClassName('editbtn')[0];
+    let emProfile = document.getElementsByClassName('emp-profile')[0];
+    let salary=document.getElementsByClassName('salary')[0];
+    let editBox=document.getElementsByClassName('formbold-main-wrapper')[0];
+    let submitBtn=document.getElementsByClassName('formbold-btn')[0];
+    editbtn.addEventListener('click', () => {
+       editBox.style.display = "block";
+       emProfile.style.display = "none";
+       salary.style.display = "none";
+    });
+    // submitBtn.addEventListener('click',()=>{
+    //   editBox.style.display = "none";
+    //    emProfile.style.display = "block";
+    //    salary.style.display = "block";
+    // })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
